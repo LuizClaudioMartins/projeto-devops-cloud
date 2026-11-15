@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudOps Portal | Projeto CI/CD</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, #1f497d, #0d233a);
+      color: #fff;
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    main {
+      margin: 2rem auto;
+    }
+    .card {
+      background: #fff;
+      padding: 1.8rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      color: #1f497d;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #eef2f7;
+      padding-bottom: 0.5rem;
+    }
+    .card h3 {
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+    .team-list {
+      list-style: none;
+      padding-left: 0.5rem;
+    }
+    .team-list li {
+      padding: 0.4rem 0;
+      font-size: 1.05rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+    .badge.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .status-box {
+      margin-top: 1.2rem;
+      padding: 1rem;
+      border-radius: 6px;
+      background-color: #e8f4fd;
+      border-left: 5px solid #007bff;
+    }
+    .hidden {
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      color: #777;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>🚀 CloudOps Portal</h1>
+      <p class="subtitle">Pipeline CI/CD com Deploy Automatizado em Nuvem</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card info-card">
+      <h2>Informações do Projeto</h2>
+      <p><strong>Disciplina:</strong> Cloud Computing e DevOps</p>
+      <p><strong>Professor:</strong> João Freire Abramowicz</p>
+      <p><strong>Status do Deploy:</strong> <span class="badge success">Online em Nuvem</span></p>
+      
+      <h3>Integrantes da Equipe:</h3>
+      <ul class="team-list">
+        <li>👨‍💻 <strong>Luiz Claudio Martins</strong></li>
+        <li>👨‍💻 <strong>Pethrus Souza</strong></li>
+        <li>👨‍💻 <strong>Gabriel Normandio</strong></li>
+      </ul>
+    </section>
+
+    <section class="card interactive-card">
+      <h2>Painel de Monitoramento DevOps (Simulação)</h2>
+      <p>Clique no botão abaixo para verificar a integridade da aplicação e o status dos serviços em nuvem:</p>
+      
+      <button id="check-btn" class="btn" type="button">Executar Health Check</button>
+      
+      <div id="status-result" class="status-box hidden">
+        <p id="status-text"></p>
+        <small id="status-time"></small>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 - Projeto Prático de DevOps e Nuvem Pública</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkBtn = document.getElementById('check-btn');
+      const statusResult = document.getElementById('status-result');
+      const statusText = document.getElementById('status-text');
+      const statusTime = document.getElementById('status-time');
+
+      checkBtn.addEventListener('click', () => {
+        statusResult.classList.remove('hidden');
+        statusText.innerHTML = '<strong>✅ Health Check Aprovado:</strong> Todos os serviços operacionais (código HTTP 200).';
+        statusTime.textContent = 'Última validação: ' + new Date().toLocaleString('pt-BR');
+      });
+    });
+  </script>
+</body>
+</html>
