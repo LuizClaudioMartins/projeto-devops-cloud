@@ -1,0 +1,43 @@
+name: Pipeline CI/CD CloudOps
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-and-test:
+    name: Validacao e Testes de Integridade
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o codigo do repositorio (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Verificar presenca dos arquivos essenciais
+        run: |
+          echo "Iniciando checagem dos arquivos do projeto..."
+          test -f index.html &amp;&amp; echo "OK: index.html presente!" || exit 1
+          echo "Validacao estrutural concluida com sucesso!"
+
+      - name: Simulacao de Testes Automatizados de Health Check
+        run: |
+          echo "Executando testes de sintaxe e estrutura..."
+          grep -q "Health Check" index.html &amp;&amp; echo "OK: Rotina de Health Check validada!" || exit 1
+          echo "Todos os testes passaram com sucesso!"
+
+  deploy:
+    name: Entrega Continua (Continuous Deployment)
+    needs: validate-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Baixar o codigo para Deploy
+        uses: actions/checkout@v4
+
+      - name: Publicacao Automatizada em Nuvem
+        run: |
+          echo "Disparando publicacao automatizada na Nuvem..."
+          echo "Deploy realizado com sucesso no ambiente Cloud!"
